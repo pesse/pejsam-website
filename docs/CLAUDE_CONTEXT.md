@@ -14,7 +14,7 @@
 
 ## Quick Facts
 
-- **Project Name**: roq-with-blog
+- **Project Name**: pejgan-website
 - **Version**: 1.0.0-SNAPSHOT
 - **Framework**: Quarkus 3.28.4
 - **ROQ Version**: 1.10.1

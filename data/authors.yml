@@ -1,10 +1,27 @@
-roqqy:
-  name: "Roqqy Balboa"
-  job: Roq Boxer
-  nickname: roqqy
-  profile: "https://github.com/quarkiverse/quarkus-roq"
-  avatar: "https://raw.githubusercontent.com/quarkiverse/quarkus-roq/refs/heads/main/blog/public/images/iamroq.png"
+lena:
+  name: "Lena Nyström"
+  nickname: "Pejgan"
+  job: "Engineering Manager @ Nordnet"
+  profile: "https://testing.pejgan.se"
+  avatar: "/images/lena-avatar.jpg"
   bio: |
-    Quarkus is my go-to framework for making Java development not only faster but more fun. 
-    I’m driven by the mission to create high-performance, lightweight microservices that scale effortlessly in the cloud. 
-    With Quarkus, I can push Java to its limits, and nothing excites me more than exploring new ways to optimize and streamline applications with this amazing toolkit.
+    Software quality professional since 1999, with experience across development, testing, leadership, and management.
+    MASH core member, creator of "Would Heu-risk it?", keynote speaker and facilitator.
+    Passionate about challenging assumptions and continuous improvement in software quality.
+  github: ""
+  twitter: ""
+  linkedin: ""
+
+sam:
+  name: "Samuel Nitsche"
+  nickname: "Sam"
+  job: "Senior Software Developer @ QualityMinds GmbH"
+  profile: "https://developer-sam.de"
+  avatar: "/images/sam-avatar.jpg"
+  bio: |
+    Curiosity-driven software developer since early 2000s, specializing in modern database development,
+    automated testing, and code quality. Oracle ACE, Symposium 42 & MASH core member.
+    Primary contributor and maintainer of utPLSQL open-source project.
+  github: ""
+  twitter: ""
+  linkedin: ""

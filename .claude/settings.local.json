@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "WebFetch(domain:embedded.qatest.org)",
+      "WebFetch(domain:agiletestingdays.com)"
     ],
     "deny": [],
     "ask": []

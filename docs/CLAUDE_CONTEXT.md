@@ -20,7 +20,7 @@
 - **ROQ Version**: 1.10.1
 - **Java Version**: 21
 - **Build Tool**: Maven 3.x
-- **Theme**: quarkus-roq-theme-default
+- **Theme**: pejsam (custom theme)
 
 ---
 
@@ -82,7 +82,7 @@ Maven build configuration defining:
 - Build plugins
 
 ### application.properties
-Located at: `src/main/resources/application.properties`
+Located at: `src/main/resources/config/application.properties`
 Quarkus runtime configuration (currently empty in starter)
 
 ### data/authors.yml
@@ -184,6 +184,49 @@ Use Qute expressions in templates:
 {page.title}
 {page.data.customField}
 {page.date.format('YYYY')}
+```
+
+---
+
+## Custom Theme: "pejsam"
+
+### ⚠️ CRITICAL: Theme File Locations
+
+**All layout and theme changes MUST be made in these directories:**
+
+- **Partials**: `src/main/resources/templates/partials/pejsam/`
+- **Layouts**: `src/main/resources/templates/theme-layouts/pejsam/`
+
+**DO NOT modify the default theme files. Only modify files in the pejsam theme directories.**
+
+### Theme Structure
+
+**Partials** (reusable components):
+- `404.html` - 404 error page content
+- `head.html` - HTML head section (meta tags, CSS links)
+- `pagination.html` - Pagination controls
+- `sidebar-about.html` - About section in sidebar
+- `sidebar-contact.html` - Contact section in sidebar
+- `sidebar-copyright.html` - Copyright footer
+- `sidebar-menu.html` - Sidebar navigation menu
+
+**Layouts** (page templates):
+- `404.html` - 404 error page layout
+- `default.html` - Base/default layout
+- `index.html` - Homepage layout
+- `main.html` - Main layout wrapper
+- `page.html` - Static page layout
+- `post.html` - Blog post layout
+- `tag.html` - Tag archive layout
+
+### Using the Custom Theme
+
+In content frontmatter, reference layouts with `:pejsam/` prefix:
+```yaml
+---
+layout: :pejsam/post
+title: My Post
+---
 ```
 
 ---

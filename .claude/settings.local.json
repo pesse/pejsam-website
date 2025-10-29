@@ -3,7 +3,11 @@
     "allow": [
       "Bash(mkdir:*)",
       "WebFetch(domain:embedded.qatest.org)",
-      "WebFetch(domain:agiletestingdays.com)"
+      "WebFetch(domain:agiletestingdays.com)",
+      "WebFetch(domain:iamroq.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:docs.quarkiverse.io)",
+      "Bash(./mvnw package:*)"
     ],
     "deny": [],
     "ask": []

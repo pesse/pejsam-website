@@ -2,7 +2,7 @@
 title: About PEJSAM
 description: |
   PEJSAM is the collaboration of Lena (Pejgan) Nyström and Samuel (Sam) Nitsche - two IT professionals who combine their expertise in software quality and development to explore innovative ways of presenting technical topics.
-layout: page
+layout: :theme/page
 ---
 
 # About PEJSAM

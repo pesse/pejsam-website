@@ -10,6 +10,15 @@
 
 - **Git Commits**: User handles ALL git operations (add, commit, push) themselves. NEVER create commits or push to git. Only create/modify files as requested.
 
+## ⚠️ Critical ROQ Gotchas
+
+**See `docs/ROQ_LEARNINGS.md` for comprehensive details.** Most critical:
+1. **Layout references**: Content uses `:theme/`, theme files use `theme-name/`
+2. **Never hardcode paths**: Always use `{site.url('path')}` - see "Linking in ROQ" section below
+3. **No java: namespace**: Use `{post.date.format('yyyy')}` or static values
+4. **Test with non-root path** before deploying - see "Testing Changes" section below
+5. **Make ONE change at a time**, then test
+
 ---
 
 ## Quick Facts
@@ -252,13 +261,15 @@ Use Qute expressions in templates:
 
 ### Using the Custom Theme
 
-In content frontmatter, reference layouts with `:pejsam/` prefix:
+In content frontmatter, reference layouts with `:theme/` prefix:
 ```yaml
 ---
-layout: :pejsam/post
+layout: :theme/post
 title: My Post
 ---
 ```
+
+**Note**: Use `:theme/` (not `:pejsam/`) in content files. ROQ resolves this to the active theme.
 
 ---
 
@@ -383,6 +394,7 @@ From `pom.xml`:
 - ROQ Official Site: https://iamroq.com/
 - Quarkus Documentation: https://quarkus.io/guides/
 - Qute Templating: https://quarkus.io/guides/qute
+- **ROQ Learnings & Patterns**: `docs/ROQ_LEARNINGS.md` - Detailed patterns, examples, and common mistakes
 
 ---
 

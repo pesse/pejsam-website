@@ -83,7 +83,7 @@ Maven build configuration defining:
 
 ### application.properties
 Located at: `src/main/resources/config/application.properties`
-Quarkus runtime configuration (currently empty in starter)
+Quarkus/ROQ runtime configuration
 
 ### data/authors.yml
 Author profiles with structure:
@@ -105,6 +105,37 @@ Navigation menu configuration:
   url: /path
   icon: fa-icon-name  # Font Awesome icons supported
 ```
+
+---
+
+## Styling and JavaScript
+
+### Option 1: Use public css
+Add css and scripts in your site static directory: /public/css, /public/js
+
+### Option 2: Use web-bundling
+
+ROQ comes with a built-in Web-Bundler (https://docs.quarkiverse.io/quarkus-web-bundler) and is able to bundle, compile and minify.
+
+To use bundling scripts (js, ts) and styles (css, scss), locate them in src/main/resources/web/app/.
+
+```
+pejsam-roq/
+├── src/main/resources/web/app/
+│                           ├── scripts.js
+│                           └── styles.scss
+```
+
+To include the generated bundle in your template, specify the bundle tag in the html>head tag:
+
+layouts/head.html
+```
+<head>
+  ...
+  {#bundle /}
+</head>
+```
+It will be rendered with the relevant <script> and <style> tags to include your bundle.
 
 ---
 
@@ -231,6 +262,53 @@ title: My Post
 
 ---
 
+## ⚠️ CRITICAL: Linking in ROQ
+
+**NEVER use hardcoded links starting with `/`** - they will break when the site is deployed to a non-root path.
+
+### Correct Link Syntax
+
+**In Templates and Content:**
+- **Site root**: `{site.url}` or `{site.url('')}` - Links to the homepage
+- **Internal pages**: `{site.url('path/to/page')}` - Links to specific pages
+- **Resolve URLs**: `{site.url.resolve(variable)}` - Resolve a URL from a variable
+- **Current page**: `{page.url}` - Link to current page
+- **Next/previous**: `{page.next.url}`, `{page.prev.url}` - Navigation links
+- **Collection items**: `{post.url}` - Links to posts/documents
+
+**Examples:**
+```html
+<!-- Homepage link -->
+<a href="{site.url}">Home</a>
+
+<!-- Internal page links -->
+<a href="{site.url('projects/my-project')}">View Project</a>
+<a href="{site.url('about')}">About</a>
+
+<!-- Resolve a URL from a variable -->
+<a href="{site.url.resolve(event.link)}">More info</a>
+
+<!-- Loop through posts -->
+{#for post in site.collections.posts}
+  <a href="{post.url}">{post.title}</a>
+{/for}
+```
+
+**WRONG** ❌:
+```html
+<a href="/projects/my-project">Link</a>
+<a href="/about">About</a>
+<a href="{site.url}/projects/my-project">Link</a>
+```
+
+**CORRECT** ✅:
+```html
+<a href="{site.url('projects/my-project')}">Link</a>
+<a href="{site.url('about')}">About</a>
+```
+
+---
+
 ## Development Workflow
 
 ### Starting Development Server
@@ -240,6 +318,20 @@ title: My Post
 - Live reload enabled
 - Dev UI available at `http://localhost:8080/q/dev/`
 - Site served at `http://localhost:8080`
+
+### ⚠️ Testing Changes (ALWAYS USE THIS)
+**Use this command to test all changes, especially links:**
+```bash
+QUARKUS_ROQ_GENERATOR_BATCH=true QUARKUS_HTTP_ROOT_PATH="/pejsam-roq/roq-with-blog/target/roq" ./mvnw package quarkus:run -DskipTests
+```
+
+This command:
+- Sets `QUARKUS_ROQ_GENERATOR_BATCH=true` for batch generation
+- Sets `QUARKUS_HTTP_ROOT_PATH` to a non-root path specific to this current local environment to verify links work correctly when deployed
+- Packages and runs the site
+- Skips tests for faster execution
+
+**Why this matters:** The non-root path simulates the actual deployment environment and ensures that all links using `{site.url(...)}` work correctly.
 
 ### Building for Production
 ```bash
@@ -283,59 +375,6 @@ Three Dockerfile variants available:
 
 ---
 
-## Current State
-
-### What's Implemented
-- ✅ Basic project structure
-- ✅ Sample blog post (2024-10-13-the-first-roq)
-- ✅ Author management system
-- ✅ Navigation menu
-- ✅ Homepage (index.html)
-- ✅ About page (about.md)
-- ✅ Custom 404 page
-- ✅ Default theme
-- ✅ GitHub Pages deployment pipeline
-
-### What's Empty/Customizable
-- Java source code (`src/main/java/`) - Optional for advanced customization
-- Application properties - Can add Quarkus configuration
-- Custom CSS/JS - Can be added to `public/` directory
-- Additional pages/posts - Ready to be added
-
----
-
-## Common Customizations
-
-### Adding a New Blog Post
-1. Create directory: `content/posts/YYYY-MM-DD-slug/`
-2. Create file: `index.md` with frontmatter
-3. Add images in same directory
-4. Reference images relatively: `![alt](image.jpg)`
-
-### Adding a New Author
-Edit `data/authors.yml`:
-```yaml
-new-author-id:
-  name: Full Name
-  nickname: Display Name
-  avatar: /images/avatar.jpg
-  bio: Biography text
-  github: username
-```
-
-### Modifying Navigation
-Edit `data/menu.yml`:
-```yaml
-- title: New Page
-  url: /new-page
-  icon: fa-solid fa-icon-name
-```
-
-### Custom Styling
-Add CSS files to `public/css/` and reference in layouts or frontmatter
-
----
-
 ## Key Dependencies
 
 From `pom.xml`:
@@ -343,6 +382,7 @@ From `pom.xml`:
 - `io.quarkiverse.roq:quarkus-roq-theme-default:1.10.1`
 - `io.quarkus:quarkus-arc` (Dependency Injection)
 - `io.quarkus:quarkus-junit5` (Testing)
+- `io.quarkiverse.web-bundler:quarkus-web-bundler:1.9.3` (Bundling JS and SCSS files)
 
 ---
 

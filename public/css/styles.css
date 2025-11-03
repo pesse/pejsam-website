@@ -1,35 +1,80 @@
 /* PEJSAM Custom Styles */
 
 /* Hero Section */
-.hero {
-    text-align: center;
-    padding: 3rem 0;
-    background: linear-gradient(135deg, rgba(139, 21, 56, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%);
-    border-radius: 12px;
+.hero-wrapper {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
     margin-bottom: 3rem;
+    overflow: hidden;
+}
+
+.hero {
+    position: relative;
+    text-align: center;
+    padding: 6rem 2rem;
+    background-image: url('../images/hero-presentation.jpg');
+    background-size: cover;
+    background-position: center 45%;
+    background-repeat: no-repeat;
+    min-height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(139, 21, 56, 0.75) 0%,
+        rgba(26, 26, 26, 0.65) 50%,
+        rgba(212, 175, 55, 0.6) 100%
+    );
+    z-index: 1;
+}
+
+.hero > * {
+    position: relative;
+    z-index: 2;
 }
 
 .hero h1 {
     font-size: 3.5rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, #8b1538 0%, #d4af37 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    margin-bottom: 1.5rem;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    font-weight: 900;
 }
 
 .hero-subtitle {
-    font-size: 1.3rem;
-    color: #666;
+    font-size: 1.4rem;
+    color: white;
     margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-subtitle strong {
+    color: #d4af37;
+    font-weight: 700;
 }
 
 .hero-tagline {
-    font-size: 1.1rem;
-    color: #8b1538;
+    font-size: 1.2rem;
+    color: #d4af37;
     font-weight: 600;
     margin-top: 1rem;
     letter-spacing: 0.05em;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Content Sections */
@@ -183,8 +228,21 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+    .hero {
+        padding: 5rem 1.5rem;
+        min-height: 400px;
+    }
+
     .hero h1 {
         font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .hero-tagline {
+        font-size: 1rem;
     }
 
     .project-grid {

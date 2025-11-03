@@ -1,0 +1,38 @@
+{@io.quarkiverse.roq.frontmatter.runtime.model.Site site}
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>About PEJSAM</h3>
+        <p>{site.description ?: 'Applied Improv & Agile Excellence'}</p>
+        {#if site.data.name}
+        <p><strong>{site.data.name}</strong></p>
+        {/if}
+      </div>
+
+      {#insert links}
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <div class="footer-links">
+          {#if cdi:menu.items}
+          {#for item in cdi:menu.items}
+          <a href="{site.url(item.path)}">{item.title}</a>
+          {/for}
+          {/if}
+        </div>
+      </div>
+      {/}
+
+      {#insert contact}
+      {#include partials/pejsam/sidebar-contact /}
+      {/}
+    </div>
+
+    <div class="footer-bottom">
+      {#insert copyright}
+      <p>&copy; 2025 {site.data.name ?: 'PEJSAM'}. All rights reserved.</p>
+      {/}
+    </div>
+  </div>
+</footer>

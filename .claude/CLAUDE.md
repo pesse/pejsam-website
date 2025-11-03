@@ -311,16 +311,8 @@ title: My Post
 
 ## Development Workflow
 
-### Starting Development Server
-```bash
-./mvnw quarkus:dev
-```
-- Live reload enabled
-- Dev UI available at `http://localhost:8080/q/dev/`
-- Site served at `http://localhost:8080`
-
 ### ⚠️ Testing Changes (ALWAYS USE THIS)
-**Use this command to test all changes, especially links:**
+**Use this command to test all changes:**
 ```bash
 QUARKUS_ROQ_GENERATOR_BATCH=true QUARKUS_HTTP_ROOT_PATH="/pejsam-roq/roq-with-blog/target/roq" ./mvnw package quarkus:run -DskipTests
 ```

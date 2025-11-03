@@ -4,20 +4,16 @@ layout: pejsam/default
 
 {@io.quarkiverse.roq.frontmatter.runtime.model.Site site}
 
-<aside class="sidebar main">
-  {#insert header}
-  <header>
-    {#insert about}{#include partials/pejsam/sidebar-about /}{/}
-    {#insert menu}{#include partials/pejsam/sidebar-menu menu=cdi:menu.items /}{/}
-  </header> <!-- End Header -->
-  {/}
-  {#insert footer}
-  <footer>
-    {#insert contact}{#include partials/pejsam/sidebar-contact /}{/}
-    {#insert copyright}{#include partials/pejsam/sidebar-copyright /}{/}
-  </footer> <!-- End Footer -->
-  {/}
-</aside> <!-- End Sidebar -->
-<div class="content-box clearfix">
-  {#insert /}
-</div>
+{#insert header}
+{#include partials/pejsam/top-header menu=cdi:menu.items /}
+{/}
+
+<main class="site-content">
+  <div class="container">
+    {#insert /}
+  </div>
+</main>
+
+{#insert footer}
+{#include partials/pejsam/footer /}
+{/}

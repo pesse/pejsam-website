@@ -7,7 +7,8 @@
       "WebFetch(domain:iamroq.com)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:docs.quarkiverse.io)",
-      "Bash(./mvnw package:*)"
+      "Bash(./mvnw package:*)",
+      "Bash(QUARKUS_ROQ_GENERATOR_BATCH=true QUARKUS_HTTP_ROOT_PATH=\"/pejsam-roq/roq-with-blog/target/roq\" ./mvnw package quarkus:run:*)"
     ],
     "deny": [],
     "ask": []

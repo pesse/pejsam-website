@@ -32,7 +32,7 @@ Exploring how software development tasks are rarely isolated operations - they r
 ## About the Speakers
 
 **Lena Nyström**
-Software builder since 1999 with experience across development, testing, leadership, and management roles. Recently focused on "building organizations and people" rather than just software. Core drive: continuous improvement and challenging assumptions.
+Senior Technical Leader and Test Strategist with 25+ years in IT. Started as a developer in 1999, found her calling in testing after a decade of coding, and has now shifted focus to building organizations and people. CEO and Senior Test Consultant at TestScouts Stockholm AB, Vice President of SAST (Swedish Association for Software Testing). Core drive: continuous improvement and challenging assumptions.
 
 **Samuel Nitsche**
 Curiosity-driven software developer since the early 2000s, specializing in modern database development, automated testing, and code quality. Known for entertaining presentations incorporating plush animals and lightsabers.
@@ -43,4 +43,4 @@ Presented at the QA&TEST conference, an event focused on software quality and te
 
 ---
 
-[← Back to Projects](/projects)
+[← Back to Projects]({site.url('projects')})

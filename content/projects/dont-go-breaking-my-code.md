@@ -52,4 +52,4 @@ The keynote was available via Virtual Pass for remote attendees.
 
 ---
 
-[← Back to Projects](/projects)
+[← Back to Projects]({site.url('projects')})

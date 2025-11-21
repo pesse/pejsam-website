@@ -52,4 +52,4 @@ The performance was available for virtual pass attendees via streaming.
 
 ---
 
-[← Back to Projects](/projects)
+[← Back to Projects]({site.url('projects')})

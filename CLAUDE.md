@@ -393,6 +393,7 @@ From `pom.xml`:
 
 ## Notes for Future Sessions
 
+
 - ROQ uses Quarkus's hot reload - changes to content/data files are reflected immediately in dev mode
 - Frontmatter is YAML between `---` markers
 - Font Awesome icons are available (regular and solid variants)

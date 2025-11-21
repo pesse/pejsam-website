@@ -25,21 +25,24 @@ Our work focuses on real-world challenges that software teams face: communicatio
 
 **CEO and Senior Test Consultant @ TestScouts Stockholm AB**
 
-Software quality professional since 1999, with experience across development, testing, leadership, and management. Over the past decade, Lena has focused on quality in software and building organizations and people.
+Senior Technical Leader and Test Strategist with 25+ years in IT. Started her career as a developer in 1999, and after a decade of coding, found her calling in testing. Has since worked in most testing-related roles and has now shifted focus even further left - to building organizations and people.
 
 **Expertise & Focus:**
-- Software quality and testing
-- Team collaboration and leadership
+- Software quality, testing, and risk management
+- Building and leading high-performing teams
+- Organizational development and people leadership
 - Continuous improvement and challenging assumptions
 
 **Community Involvement:**
+- Vice President of SAST (Swedish Association for Software Testing) since 2021
 - MASH (Mentor and Speaker Hub) core member
 - Author and creator of "Would Heu-risk it?" - a heuristic-based testing tool (book available on Amazon and Leanpub, card deck sold by Ministry of Testing)
-- Keynote speaker and facilitator
+- International keynote speaker and facilitator at conferences including SAST, QA&TEST, Romania Testing Conference, and Agile Testing Days
 - Active blogger at [testing.pejgan.se](https://testing.pejgan.se)
+- Mentor to LIA students and trainees in testing and .NET development programs
 
 **Professional Philosophy:**
-Driven by asking "should we build that" rather than just "could we build that" - focusing on continuous improvement and challenging assumptions in software development.
+Driven by asking "should we build that" rather than just "could we build that" - focusing on continuous improvement, challenging assumptions, and creating environments where both software and people can thrive.
 
 </div>
 

@@ -14,7 +14,7 @@ Our collaborative work focuses on bridging the gap between development and quali
 
 <div class="project-card">
 
-### [The Owl Problem Musical](/projects/the-owl-problem-musical)
+### [The Owl Problem Musical]({site.url('projects/the-owl-problem-musical')})
 **Agile Testing Days 2024**
 
 A full-blown musical production exploring the tensions between AI automation and human collaboration in software testing. This theatrical performance combines storytelling, music, and dramatic elements to address contemporary workplace challenges.
@@ -23,7 +23,7 @@ A full-blown musical production exploring the tensions between AI automation and
 
 <div class="project-card">
 
-### [Don't Go Breaking My Code](/projects/dont-go-breaking-my-code)
+### [Don't Go Breaking My Code]({site.url('projects/dont-go-breaking-my-code')})
 **Agile Testing Days 2023 - Keynote**
 
 A theatrical keynote using dramatic dialogue between a tester and developer to explore collaboration challenges, flow, context-switching, and the importance of multiple perspectives in software development.
@@ -32,7 +32,7 @@ A theatrical keynote using dramatic dialogue between a tester and developer to e
 
 <div class="project-card">
 
-### [Non-atomic Operations of Builders and Breakers](/projects/non-atomic-operations)
+### [Non-atomic Operations of Builders and Breakers]({site.url('projects/non-atomic-operations')})
 **QA&TEST Conference**
 
 Addressing collaboration challenges between testers and developers, exploring how builders and breakers can work together more effectively in software teams.

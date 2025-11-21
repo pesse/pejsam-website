@@ -214,24 +214,6 @@ a:hover {
 }
 
 /* Contact Section in Footer */
-.contact {
-    /* Remove default margins */
-}
-
-.contact .contact-title,
-.contact h3 {
-    color: var(--pejsam-gold);
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-}
-
-.contact p {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
 .contact ul {
     list-style: none;
     padding: 0;

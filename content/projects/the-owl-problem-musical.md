@@ -38,7 +38,7 @@ This amateur theatrical production combines:
 ## Cast & Crew
 
 The production features a collaborative cast of performers from the testing and development community:
-- **Lena Nyström** (Engineering Manager @ Nordnet)
+- **Lena Nyström** (CEO and Senior Test Consultant @ TestScouts Stockholm AB)
 - **Samuel Nitsche** (Senior Software Developer @ QualityMinds GmbH)
 - Veerle Verhagen (Tester @ NS)
 - Tamara Josten (Junior Test Automation Engineer @ QualityMinds GmbH)

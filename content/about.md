@@ -23,7 +23,7 @@ Our work focuses on real-world challenges that software teams face: communicatio
 
 ### Lena Nyström (Pejgan)
 
-**Engineering Manager @ Nordnet**
+**CEO and Senior Test Consultant @ TestScouts Stockholm AB**
 
 Software quality professional since 1999, with experience across development, testing, leadership, and management. Over the past decade, Lena has focused on quality in software and building organizations and people.
 
@@ -34,7 +34,7 @@ Software quality professional since 1999, with experience across development, te
 
 **Community Involvement:**
 - MASH (Mentor and Speaker Hub) core member
-- Creator of "Would Heu-risk it?" - a heuristic-based testing tool
+- Author and creator of "Would Heu-risk it?" - a heuristic-based testing tool (book available on Amazon and Leanpub, card deck sold by Ministry of Testing)
 - Keynote speaker and facilitator
 - Active blogger at [testing.pejgan.se](https://testing.pejgan.se)
 

@@ -35,7 +35,7 @@ jobs:
         run: ./mvnw package quarkus:run
         env:
           QUARKUS_ROQ_GENERATOR_BATCH: true
-          QUARKUS_HTTP_ROOT_PATH: /pejsam-roq/roq-with-blog/target/roq
+          QUARKUS_HTTP_ROOT_PATH: /pejsam-website/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

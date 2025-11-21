@@ -217,11 +217,19 @@ Creates GraalVM native image for minimal size/startup time
 ### GitHub Pages (Configured)
 
 **Workflow**: `.github/workflows/deploy.yml`
-- **Trigger**: Push to `main` branch (configurable)
+- **Trigger**: Push to `main` branch or manual workflow dispatch
 - **Steps**:
-  1. Generate site using `quarkiverse/quarkus-roq` action
-  2. Deploy to GitHub Pages using `actions/deploy-pages`
-- **Requirements**: GitHub token (automatic)
+  1. Build site with Maven (`./mvnw clean package -DskipTests`)
+  2. Upload artifact from `target/roq-templates/full/` directory
+  3. Deploy to GitHub Pages using `actions/deploy-pages@v4`
+- **Requirements**: 
+  - GitHub token (automatic via `GITHUB_TOKEN`)
+  - GitHub Pages enabled in repository settings
+  - Pages source set to "GitHub Actions"
+- **Build Details**:
+  - Java 21 (Temurin distribution)
+  - Maven caching enabled for faster builds
+  - Static site output: `target/roq-templates/full/`
 
 ### Docker Support
 

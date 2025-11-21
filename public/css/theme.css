@@ -202,6 +202,10 @@ a:hover {
     border-top: 3px solid var(--pejsam-gold);
 }
 
+.site-footer .container {
+    background-color: transparent;
+}
+
 .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

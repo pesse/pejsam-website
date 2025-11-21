@@ -202,11 +202,41 @@ a:hover {
     border-top: 3px solid var(--pejsam-gold);
 }
 
+.site-footer .container {
+    background-color: transparent;
+}
+
 .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
+}
+
+/* Contact Section in Footer */
+.contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.contact li {
+    margin: 0;
+}
+
+.contact a {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.contact a:hover {
+    color: var(--pejsam-gold);
+    transform: scale(1.1);
 }
 
 .footer-section h3 {

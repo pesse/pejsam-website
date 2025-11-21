@@ -1,10 +1,11 @@
-<section class="contact">
-    <h3 class="contact-title">{roq_theme:contact_title}</h3>
+<section class="contact footer-section">
+    <h3>Contact</h3>
+    <p>Get in touch with us for workshops, keynotes, or theatrical collaborations.</p>
     <ul>
         {#for entry in brand.entrySet()}
         {#if site.data.get(entry.key)??}
         <li>
-            <a href="{entry.value.prefix()}{site.data.get(entry.key)}" target="_blank">
+            <a href="{entry.value.prefix()}{site.data.get(entry.key)}" target="_blank" title="{entry.key}">
                 <i class="{entry.value.icon()}" aria-hidden="true"></i>
             </a>
         </li>

@@ -11,19 +11,6 @@
         {/if}
       </div>
 
-      {#insert links}
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <div class="footer-links">
-          {#if cdi:menu.items}
-          {#for item in cdi:menu.items}
-          <a href="{site.url(item.path)}">{item.title}</a>
-          {/for}
-          {/if}
-        </div>
-      </div>
-      {/}
-
       {#insert contact}
       {#include partials/pejsam/sidebar-contact /}
       {/}

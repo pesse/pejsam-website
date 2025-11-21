@@ -1,12 +1,13 @@
 lena:
   name: "Lena Nyström"
   nickname: "Pejgan"
-  job: "Engineering Manager @ Nordnet"
+  job: "CEO and Senior Test Consultant @ TestScouts Stockholm AB"
   profile: "https://testing.pejgan.se"
   avatar: "/images/lena-avatar.jpg"
   bio: |
     Software quality professional since 1999, with experience across development, testing, leadership, and management.
-    MASH core member, creator of "Would Heu-risk it?", keynote speaker and facilitator.
+    CEO and Senior Test Consultant at TestScouts Stockholm AB.
+    MASH core member, author and creator of "Would Heu-risk it?" (book available on Amazon and Leanpub, card deck sold by Ministry of Testing), keynote speaker and facilitator.
     Passionate about challenging assumptions and continuous improvement in software quality.
   github: ""
   twitter: ""

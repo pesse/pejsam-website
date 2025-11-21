@@ -213,6 +213,50 @@ a:hover {
     margin-bottom: 2rem;
 }
 
+/* Contact Section in Footer */
+.contact {
+    /* Remove default margins */
+}
+
+.contact .contact-title,
+.contact h3 {
+    color: var(--pejsam-gold);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.contact p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.contact li {
+    margin: 0;
+}
+
+.contact a {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.contact a:hover {
+    color: var(--pejsam-gold);
+    transform: scale(1.1);
+}
+
 .footer-section h3 {
     color: var(--pejsam-gold);
     font-size: 1.25rem;

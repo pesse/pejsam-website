@@ -323,7 +323,7 @@ title: My Post
 ## Development Workflow
 
 ### ⚠️ Testing Changes (ALWAYS USE THIS)
-**Use this command to test all changes:**
+**Use this command to test all changes (locally):**
 ```bash
 QUARKUS_ROQ_GENERATOR_BATCH=true QUARKUS_HTTP_ROOT_PATH="/pejsam-roq/roq-with-blog/target/roq" ./mvnw package quarkus:run -DskipTests
 ```
@@ -336,17 +336,10 @@ This command:
 
 **Why this matters:** The non-root path simulates the actual deployment environment and ensures that all links using `{site.url(...)}` work correctly.
 
-### Building for Production
+**Use this command inside GitHub:**
 ```bash
-./mvnw package
+QUARKUS_ROQ_GENERATOR_BATCH=true QUARKUS_HTTP_ROOT_PATH="/pejsam-website" ./mvnw package quarkus:run -DskipTests
 ```
-Output in `target/` directory
-
-### Native Compilation
-```bash
-./mvnw package -Dnative
-```
-Creates GraalVM native image for minimal size/startup time
 
 ---
 

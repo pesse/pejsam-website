@@ -116,7 +116,7 @@ git commit -m "Your commit message"
 
 ### Push to GitHub (Triggers Deployment)
 ```bash
-git push origin main
+git push origin master
 ```
 
 ---
@@ -249,7 +249,7 @@ Push to `main` branch or use GitHub UI to re-run workflow
 # 4. When satisfied, commit and push
 git add .
 git commit -m "Add new post"
-git push origin main
+git push origin master
 
 # 5. GitHub Actions will automatically deploy
 ```

@@ -2,7 +2,7 @@ name: Deploy ROQ site to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -32,12 +32,15 @@ jobs:
           cache: 'maven'
 
       - name: Build ROQ site
-        run: ./mvnw clean package -DskipTests
+        run: ./mvnw package quarkus:run
+        env:
+          QUARKUS_ROQ_GENERATOR_BATCH: true
+          QUARKUS_HTTP_ROOT_PATH: /pejsam-roq/roq-with-blog/target/roq
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: target/roq-templates/full
+          path: target/roq
 
   deploy:
     environment:

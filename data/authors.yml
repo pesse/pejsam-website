@@ -3,7 +3,7 @@ lena:
   nickname: "Pejgan"
   job: "CEO and Senior Test Consultant @ TestScouts Stockholm AB"
   profile: "https://testing.pejgan.se"
-  avatar: "images/lena-avatar.jpg"
+  avatar: "/images/lena-avatar.jpg"
   bio: |
     Senior Technical Leader and Test Strategist with 25+ years in IT. Started as a developer in 1999, found her calling in testing after a decade of coding, and has now shifted focus to building organizations and people.
     CEO and Senior Test Consultant at TestScouts Stockholm AB. Vice President of SAST (Swedish Association for Software Testing) since 2021.
@@ -18,7 +18,7 @@ sam:
   nickname: "Sam"
   job: "Senior Software Developer @ QualityMinds GmbH"
   profile: "https://developer-sam.de"
-  avatar: "images/sam-avatar.jpg"
+  avatar: "/images/sam-avatar.jpg"
   bio: |
     Curiosity-driven software developer since early 2000s, specializing in modern database development,
     automated testing, and code quality. Oracle ACE, Symposium 42 & MASH core member.

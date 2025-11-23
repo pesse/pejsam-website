@@ -42,7 +42,7 @@ asciidoc-attributes:
           <div class="page-tag">
             {#for tag in page.data.tags.asStrings}
             {#let tagSlug = tag.slugify}
-            <a href="{site.url('/posts/tag', tagSlug)}" class="tag">&#35; {tagSlug}</a>
+            <a href="{site.url('posts/tag', tagSlug)}" class="tag">&#35; {tagSlug}</a>
             {/for}
           </div>
 

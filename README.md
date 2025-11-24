@@ -76,3 +76,19 @@ This project is configured for automatic deployment to GitHub Pages via GitHub A
 - Output: Static site from `target/roq/`
 
 The workflow automatically builds the site and deploys it whenever changes are pushed to the master branch.
+
+### PR Preview Deployments
+
+Pull requests from trusted contributors automatically get preview deployments at:
+```
+https://pesse.github.io/pejsam-website/preview/pr-<PR-NUMBER>/
+```
+
+**Features:**
+- Automatic preview build and deployment when PR is opened or updated
+- Preview URL posted as a comment on the PR
+- Automatic cleanup when PR is closed
+- Trusted contributor restriction for security
+- Isolated `/preview/` directory prevents accidental deletions
+
+See [docs/PR_PREVIEW.md](docs/PR_PREVIEW.md) for detailed documentation.

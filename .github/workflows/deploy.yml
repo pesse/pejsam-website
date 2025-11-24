@@ -5,14 +5,11 @@ on:
     branches: [master]
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -52,3 +49,75 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  cleanup-closed-prs:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          fetch-depth: 0
+
+      - name: Cleanup closed PR preview folders
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const exec = require('@actions/exec');
+
+            const { data: openPRs } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open'
+            });
+
+            const openPRNumbers = new Set(openPRs.map(pr => pr.number));
+
+            // Check if preview directory exists
+            if (!fs.existsSync('preview')) {
+              console.log('ℹ️ No preview directory found');
+              return;
+            }
+
+            const previewFiles = fs.readdirSync('preview');
+            const prDirs = previewFiles.filter(f =>
+              f.startsWith('pr-') &&
+              fs.statSync(`preview/${f}`).isDirectory()
+            );
+
+            const dirsToRemove = [];
+            for (const dir of prDirs) {
+              const prNumber = parseInt(dir.replace('pr-', ''));
+              if (!isNaN(prNumber) && !openPRNumbers.has(prNumber)) {
+                dirsToRemove.push(`preview/${dir}`);
+              }
+            }
+
+            if (dirsToRemove.length > 0) {
+              const msg =
+                `Found ${dirsToRemove.length} closed PR preview(s): ` +
+                `${dirsToRemove.join(', ')}`;
+              console.log(msg);
+
+              await exec.exec('git',
+                ['config', 'user.name', 'github-actions[bot]']);
+              await exec.exec('git',
+                ['config', 'user.email',
+                 'github-actions[bot]@users.noreply.github.com']);
+
+              for (const dir of dirsToRemove) {
+                await exec.exec('git', ['rm', '-rf', dir]);
+              }
+
+              const commitMsg =
+                `Cleanup previews for closed PRs: ` +
+                `${dirsToRemove.join(', ')}`;
+              await exec.exec('git', ['commit', '-m', commitMsg]);
+              await exec.exec('git', ['push']);
+
+              console.log('✅ Cleanup completed');
+            } else {
+              console.log('ℹ️ No closed PR previews to clean up');
+            }

@@ -65,7 +65,7 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            const path = require('path');
+            const exec = require('@actions/exec');
 
             const { data: openPRs } = await github.rest.pulls.list({
               owner: context.repo.owner,

@@ -10,6 +10,8 @@ permissions:
 
 jobs:
   build-preview:
+    # Restrict to trusted contributor only as per security requirement
+    # Future enhancement: could use repository secrets or team membership
     if: github.actor == 'pesse'
     runs-on: ubuntu-latest
     steps:

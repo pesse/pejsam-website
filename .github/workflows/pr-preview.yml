@@ -1,0 +1,85 @@
+name: Deploy PR Preview to GitHub Pages
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  build-preview:
+    if: github.actor == 'pesse'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+
+      - name: Build ROQ site for PR
+        run: ./mvnw package quarkus:run
+        env:
+          QUARKUS_ROQ_GENERATOR_BATCH: true
+          QUARKUS_HTTP_ROOT_PATH: >-
+            /pejsam-website/pr-${{ github.event.pull_request.number }}/
+
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/roq
+          destination_dir: pr-${{ github.event.pull_request.number }}
+          keep_files: true
+
+      - name: Comment preview URL on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const previewUrl =
+              `https://pesse.github.io/pejsam-website/pr-${prNumber}/`;
+
+            const comments = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber
+            });
+
+            const botComment = comments.data.find(comment =>
+              comment.user.login === 'github-actions[bot]' &&
+              comment.body.includes('Preview deployment')
+            );
+
+            const body = `## 🚀 Preview deployment ready!
+
+            Your changes have been deployed to a preview environment:
+
+            **Preview URL:** ${previewUrl}
+
+            The preview will be updated automatically with new commits.
+
+            > ⚠️ **Note:** This preview is generated from the PR branch
+            and may take a minute to be available after deployment.`;
+
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: body
+              });
+            }

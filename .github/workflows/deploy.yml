@@ -75,16 +75,23 @@ jobs:
 
             const openPRNumbers = new Set(openPRs.map(pr => pr.number));
 
-            const files = fs.readdirSync('.');
-            const prDirs = files.filter(f =>
-              f.startsWith('pr-') && fs.statSync(f).isDirectory()
+            // Check if preview directory exists
+            if (!fs.existsSync('preview')) {
+              console.log('ℹ️ No preview directory found');
+              return;
+            }
+
+            const previewFiles = fs.readdirSync('preview');
+            const prDirs = previewFiles.filter(f =>
+              f.startsWith('pr-') &&
+              fs.statSync(`preview/${f}`).isDirectory()
             );
 
             const dirsToRemove = [];
             for (const dir of prDirs) {
               const prNumber = parseInt(dir.replace('pr-', ''));
               if (!isNaN(prNumber) && !openPRNumbers.has(prNumber)) {
-                dirsToRemove.push(dir);
+                dirsToRemove.push(`preview/${dir}`);
               }
             }
 

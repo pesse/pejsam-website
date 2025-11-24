@@ -30,14 +30,14 @@ jobs:
         env:
           QUARKUS_ROQ_GENERATOR_BATCH: true
           QUARKUS_HTTP_ROOT_PATH: >-
-            /pejsam-website/pr-${{ github.event.pull_request.number }}/
+            /pejsam-website/preview/pr-${{ github.event.pull_request.number }}/
 
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./target/roq
-          destination_dir: pr-${{ github.event.pull_request.number }}
+          destination_dir: preview/pr-${{ github.event.pull_request.number }}
           keep_files: true
 
       - name: Comment preview URL on PR
@@ -46,7 +46,7 @@ jobs:
           script: |
             const prNumber = context.payload.pull_request.number;
             const previewUrl =
-              `https://pesse.github.io/pejsam-website/pr-${prNumber}/`;
+              `https://pesse.github.io/pejsam-website/preview/pr-${prNumber}/`;
 
             const comments = await github.rest.issues.listComments({
               owner: context.repo.owner,

@@ -81,7 +81,7 @@ The workflow automatically builds the site and deploys it whenever changes are p
 
 Pull requests from trusted contributors automatically get preview deployments at:
 ```
-https://pesse.github.io/pejsam-website/pr-<PR-NUMBER>/
+https://pesse.github.io/pejsam-website/preview/pr-<PR-NUMBER>/
 ```
 
 **Features:**
@@ -89,5 +89,6 @@ https://pesse.github.io/pejsam-website/pr-<PR-NUMBER>/
 - Preview URL posted as a comment on the PR
 - Automatic cleanup when PR is closed
 - Trusted contributor restriction for security
+- Isolated `/preview/` directory prevents accidental deletions
 
 See [docs/PR_PREVIEW.md](docs/PR_PREVIEW.md) for detailed documentation.

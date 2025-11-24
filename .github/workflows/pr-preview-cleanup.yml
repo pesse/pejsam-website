@@ -22,7 +22,7 @@ jobs:
 
       - name: Remove PR preview directory
         run: |
-          PR_DIR="pr-${{ github.event.pull_request.number }}"
+          PR_DIR="preview/pr-${{ github.event.pull_request.number }}"
           if [ -d "$PR_DIR" ]; then
             git config user.name "github-actions[bot]"
             git config user.email \

@@ -7,21 +7,23 @@ This repository now supports automatic static site preview deployments for pull 
 ## How It Works
 
 ### Preview URL Pattern
-Each PR gets its own preview URL:
+Each PR gets its own preview URL under the `/preview/` directory:
 ```
-https://pesse.github.io/pejsam-website/pr-<PR-NUMBER>/
+https://pesse.github.io/pejsam-website/preview/pr-<PR-NUMBER>/
 ```
 
 For example, PR #42 would be available at:
 ```
-https://pesse.github.io/pejsam-website/pr-42/
+https://pesse.github.io/pejsam-website/preview/pr-42/
 ```
+
+This structure prevents accidental deletions/cleanups by isolating preview deployments in a dedicated directory.
 
 ### Workflow Lifecycle
 
 1. **PR Opened/Updated**: When a PR is opened, synchronized (new commits pushed), or reopened:
    - The workflow builds a static ROQ site with PR-specific paths
-   - Deploys to `gh-pages` branch in the `pr-<number>` subfolder
+   - Deploys to `gh-pages` branch in the `preview/pr-<number>` subfolder
    - Posts/updates a comment on the PR with the preview URL
 
 2. **PR Closed**: When a PR is closed (merged or not):
@@ -72,8 +74,8 @@ if: contains(github.event.pull_request.labels.*.name, 'preview-requested')
 **Jobs:**
 - Checks out PR branch
 - Sets up Java 21 and Maven
-- Builds ROQ site with `QUARKUS_HTTP_ROOT_PATH=/pejsam-website/pr-<number>/`
-- Deploys to `gh-pages` branch using `peaceiris/actions-gh-pages` action
+- Builds ROQ site with `QUARKUS_HTTP_ROOT_PATH=/pejsam-website/preview/pr-<number>/`
+- Deploys to `gh-pages` branch in `preview/pr-<number>` subfolder using `peaceiris/actions-gh-pages` action
 - Posts preview URL comment on PR
 
 ### 2. `pr-preview-cleanup.yml` - Remove Preview on Close
@@ -82,7 +84,7 @@ if: contains(github.event.pull_request.labels.*.name, 'preview-requested')
 
 **Jobs:**
 - Checks out `gh-pages` branch
-- Removes `pr-<number>` directory
+- Removes `preview/pr-<number>` directory
 - Commits and pushes the deletion
 - Posts cleanup notification comment
 
@@ -90,7 +92,7 @@ if: contains(github.event.pull_request.labels.*.name, 'preview-requested')
 **New Addition:**
 - Added `cleanup-closed-prs` job that runs after main deployment
 - Fetches list of open PRs via GitHub API
-- Finds all `pr-*` directories in `gh-pages` branch
+- Finds all `preview/pr-*` directories in `gh-pages` branch
 - Removes directories for closed PRs
 - Commits and pushes cleanup
 
@@ -100,12 +102,12 @@ if: contains(github.event.pull_request.labels.*.name, 'preview-requested')
 The key to making PR previews work is setting the correct base path for all generated links. This is done via the `QUARKUS_HTTP_ROOT_PATH` environment variable:
 
 ```bash
-QUARKUS_HTTP_ROOT_PATH=/pejsam-website/pr-123/
+QUARKUS_HTTP_ROOT_PATH=/pejsam-website/preview/pr-123/
 ```
 
 This ensures all generated HTML links use the correct subfolder path, for example:
 ```html
-<a href="/pejsam-website/pr-123/about">About</a>
+<a href="/pejsam-website/preview/pr-123/about">About</a>
 ```
 
 ### ROQ Build Configuration
@@ -148,8 +150,8 @@ permissions:
 
 ### Preview Not Accessible
 - Wait a few minutes after deployment completes for GitHub Pages to update
-- Check if the `pr-<number>` folder exists in the `gh-pages` branch
-- Verify the preview URL pattern matches: `https://pesse.github.io/pejsam-website/pr-<number>/`
+- Check if the `preview/pr-<number>` folder exists in the `gh-pages` branch
+- Verify the preview URL pattern matches: `https://pesse.github.io/pejsam-website/preview/pr-<number>/`
 
 ### Old Previews Not Cleaned Up
 - Check if the PR is actually closed (not just draft)
@@ -159,7 +161,7 @@ permissions:
 ### Links Not Working in Preview
 - All links must use `{site.url('path')}` in templates, never hardcoded paths
 - Build must set `QUARKUS_HTTP_ROOT_PATH` correctly
-- Check generated HTML to verify paths start with `/pejsam-website/pr-<number>/`
+- Check generated HTML to verify paths start with `/pejsam-website/preview/pr-<number>/`
 
 ## Future Enhancements
 
@@ -177,7 +179,7 @@ To test the build command locally with a PR-specific path:
 
 ```bash
 QUARKUS_ROQ_GENERATOR_BATCH=true \
-QUARKUS_HTTP_ROOT_PATH=/pejsam-website/pr-123/ \
+QUARKUS_HTTP_ROOT_PATH=/pejsam-website/preview/pr-123/ \
 ./mvnw package quarkus:run -DskipTests
 ```
 
@@ -187,4 +189,4 @@ Then check the generated HTML files in `target/roq/` to verify paths are correct
 grep -o 'href="[^"]*"' target/roq/index.html | head -20
 ```
 
-All links should start with `/pejsam-website/pr-123/`.
+All links should start with `/pejsam-website/preview/pr-123/`.

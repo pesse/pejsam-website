@@ -54,13 +54,27 @@ jobs:
     runs-on: ubuntu-latest
     needs: deploy
     steps:
+      - name: Check if gh-pages branch exists
+        id: check-branch
+        run: |
+          if git ls-remote --exit-code --heads \
+            https://github.com/${{ github.repository }}.git gh-pages \
+            > /dev/null 2>&1; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "ℹ️ gh-pages branch does not exist yet, skipping cleanup"
+          fi
+
       - name: Checkout gh-pages branch
+        if: steps.check-branch.outputs.exists == 'true'
         uses: actions/checkout@v4
         with:
           ref: gh-pages
           fetch-depth: 0
 
       - name: Cleanup closed PR preview folders
+        if: steps.check-branch.outputs.exists == 'true'
         uses: actions/github-script@v7
         with:
           script: |

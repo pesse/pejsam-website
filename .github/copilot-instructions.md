@@ -10,6 +10,9 @@ This file gives concise, project-specific instructions to help an AI coding agen
   - This simulates GitHub Pages and verifies all `{site.url(...)}` links.
   - For testing in GitHub: Always use `QUARKUS_HTTP_ROOT_PATH="/pejsam-website/"`
 
+**GitHub issues**
+- **Screenshots before/after**: When working on Github-issues that touch the UI, **always** create screenshots before and after in the corresponding PR.
+
 **Where to edit templates & theme**
 - Theme files for the custom theme `pejsam` live in:
   - `src/main/resources/templates/partials/pejsam/` (partials/components)

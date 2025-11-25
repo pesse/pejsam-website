@@ -57,9 +57,9 @@ jobs:
       - name: Check if gh-pages branch exists
         id: check-branch
         run: |
-          if git ls-remote --heads \
+          if git ls-remote --exit-code --heads \
             https://github.com/${{ github.repository }}.git gh-pages \
-            | grep -q gh-pages; then
+            > /dev/null 2>&1; then
             echo "exists=true" >> $GITHUB_OUTPUT
           else
             echo "exists=false" >> $GITHUB_OUTPUT

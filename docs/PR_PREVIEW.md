@@ -136,10 +136,20 @@ permissions:
 **Deploy workflow:**
 ```yaml
 permissions:
-  contents: write        # Push to gh-pages branch (for cleanup)
-  pages: write           # Deploy to GitHub Pages
-  id-token: write        # OIDC token for Pages deployment
+  contents: write        # Push to gh-pages branch
 ```
+
+## GitHub Pages Configuration
+
+**Important:** GitHub Pages must be configured to deploy from the `gh-pages` branch:
+
+1. Go to Repository Settings → Pages
+2. Under "Build and deployment":
+   - Source: **Deploy from a branch**
+   - Branch: **gh-pages** / **(root)**
+3. Save
+
+This configuration is required for both main deployments and PR previews to work correctly.
 
 ## Troubleshooting
 
@@ -149,6 +159,7 @@ permissions:
 - Check for build errors in the workflow logs
 
 ### Preview Not Accessible
+- **First, verify GitHub Pages is configured correctly** (see "GitHub Pages Configuration" section above)
 - Wait a few minutes after deployment completes for GitHub Pages to update
 - Check if the `preview/pr-<number>` folder exists in the `gh-pages` branch
 - Verify the preview URL pattern matches: `https://pesse.github.io/pejsam-website/preview/pr-<number>/`

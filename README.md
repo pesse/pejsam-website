@@ -67,15 +67,15 @@ This project is configured for automatic deployment to GitHub Pages via GitHub A
 
 **Setup Requirements:**
 1. Enable GitHub Pages in your repository settings
-2. Set Pages source to "GitHub Actions"
+2. **Set Pages source to "Deploy from a branch" with branch `gh-pages` and folder `/` (root)**
 3. Push to the `master` branch to trigger deployment
 
 **Workflow Details:**
 - Location: `.github/workflows/deploy.yml`
 - Triggers: Push to `master` or manual workflow dispatch
-- Output: Static site from `target/roq/`
+- Output: Static site deployed to `gh-pages` branch
 
-The workflow automatically builds the site and deploys it whenever changes are pushed to the master branch.
+The workflow automatically builds the site and deploys it to the `gh-pages` branch whenever changes are pushed to the master branch.
 
 ### PR Preview Deployments
 
